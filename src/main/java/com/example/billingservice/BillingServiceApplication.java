@@ -33,10 +33,10 @@ public class BillingServiceApplication {
                             CustomerRestClient customerRestClient,
                             ProductItemRestClient productItemRestClient){
      return  args -> {
-         Customer customer=customerRestClient.getCustomerById(2L);
-         Bill bill1= billRepository.save(new Bill(null,new Date(),null,customer.getId(),null));
-         PagedModel<Product> productPagedModel=productItemRestClient.pageProducts();
-         productPagedModel.forEach(p->{
+         Customer customer1=customerRestClient.getCustomerById(1L);
+         Bill bill1= billRepository.save(new Bill(null,new Date(),null,customer1.getId(),null));
+         PagedModel<Product> productPagedModel1=productItemRestClient.pageProducts();
+         productPagedModel1.forEach(p->{
              ProductItem productItem=new ProductItem();
              productItem.setPrice(p.getPrice());
              productItem.setQuantity(1+new Random().nextInt(100));
@@ -44,6 +44,7 @@ public class BillingServiceApplication {
              productItem.setProductID(p.getId() );
              productItemRepository.save(productItem);
          });
+
      };
     }
 }
